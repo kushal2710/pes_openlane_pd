@@ -188,6 +188,133 @@ Cell design is done in 3 parts:
 - ```out_rise_thr``` - 50% point on the rising edge of ouput
 - ```out_fall_thr``` - 50% point on the falling edge of ouput
 
+</details>
+
+<details>
+<summary>DAY 3 :  Design library cell using magic layout and ngspice characterisation </summary>
+<br>
+
+## SPICE Deck creation for CMOS Inverter
+
+SPICE deck contains the information of netlist such as:
+- Connectivity Information
+- Component values
+- 'Nodes' identified
+- 'Node' names
+
+![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/fde8c66e-6547-49a2-bdad-478c812d5419)
+
+### [CMOS_INVERTER.cir]()
+
+```
+*** MODEL DESCRIPTIONS ***
+*** NETLIST DESCRIPTION ***
+M1 out in vdd vdd pmos W=0.375u L=0.25u
+M2 out in 0 0 nmos W=0.375u L=0.25u
+
+cload out 0 10f
+
+Vdd vdd 0 2.5
+Vin in 0 2.5
+*** SIMULATION Commands ***
+
+.op
+.dc Vin 0 2.5 0.05
+*** include tsmc_025um_model.mod ***
+.LIB "tsmc_025um_models.mod" CMOS_MODELS
+.end
+```
+
+SPICE Simulation steps
+```
+cd <folder where the .cir file is present>
+source CMOS_INVERTER.cir
+run
+setplot
+dc1
+display
+plot out vs in
+```
+
+Observe the output. It should be symmetric ie., the threshold voltage should be at vdd/2 if it isnt, try to increase the PMOS width and run the simulation again. One of the important parameters tthat defines the **ROBUSTNESS** of the CMOS is ```Switching Threshold (Vm)``` @Vm : Vin = Vout
+
+## Fabrication Process for a CMOS Inverter
+
+Fabrication of CMOS Inverter is a 16-Mask process
+
+### 1. Selecting the substrate 
+
+- P-Type substrate with resistivity around (5-50 ohm) doping level (10^15 cm^-3) and orientation (100).
+- Note that substrate doping should be less than well doping (used to fabricate NMOS and PMOS)
+
+### 2. Create active resistance
+
+This step creates pockets for NMOS and PMOS
+1. Grow SiO2(~40nm) on Psub
+2. deposit ~80nm Si3N4 on SiO2
+3. deposit 1um layer of photoresist(used to define regions)
+4. photolithography
+5. etch out Si3N4 and SiO2 using a suitable solvent
+6. Place the obtained structure in oxidation furnace due to which field oxide is grown.This process is called ```LOCOS``` that is ```Local oxidation of silicon```
+7. Etch out Si3N4 using hot phosphoric acid
+
+### 3.NWell and PWell formation
+### 4. Formation of Gate
+### 5. Light Doped Drain Formation(LDD Formation)
+### 6. Source and Drain Formation
+### 7. Steps to form contacts and interconnects
+### 8. Higher level metal formation
+### 9. Final STructure
+
+![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/0e355a75-55ff-4723-96ae-4abd5845697c)
+
+## Inverter Layout using Magic
+
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/d0cffd03-5ee1-4432-a99a-b377159dcf43)
+
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/d2dd204d-d8ec-46c4-a00c-5edfc15a30f9)
+
+- select a region from the layout, go to the console and type ```what``` to display the information of selected area
+- To select a region, place ```cursor``` on that point and  press```s```. More the number of times you press ```s```, higher the abstraction selected.
+
+### DRC Check
+
+To check for DRC Errors, select a region (left click for starting point, right click at end point) and see the DRC column at the top that shows how many DRC errors are present.The Details of DRC Errors will be printed on the console.
+
+![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/eebc0109-4408-40fa-a18e-ead67419cfa7)
+
+## Extracting PEX to SPICE with MAGIC
+
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/bd359b3a-ed51-4879-9c5a-c810d4db8be0)
+
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/0c035a8e-513c-46fa-8cb4-90ef0daa0cc2)
+
+The above file has details of inverter netlist but the sources and their values are not specified. So we have to modify the file.
+
+- Grid size from the layout is 0.01u
+- specify the library for MOS
+- create VDD, VSS, Input pulse Va
+- specify the type of analysis to be done
+
+### Grid Size
+
+![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/1fd94afe-3a40-4269-92ed-d7c46f248417)
+
+## Modified Spice netlist
+
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/590671e9-5cde-4b52-82ee-fcf544c5834e)
+
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/9e19ba43-8143-4d95-b215-56ae1fdbd45f)
+
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/8bfac9c0-622c-4102-8fc5-30c90c750e46)
+
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/6a7badb7-5bef-47cd-b3c6-3f76292cc1fd)
+
+The results obtained from the graph are :
+- Rise Transition : 0.0395ns
+- Fall transition : 0.0282ns
+- Cell Rise delay : 0.03598ns
+- Cell fall delay : 0.0483ns
 
 
 
