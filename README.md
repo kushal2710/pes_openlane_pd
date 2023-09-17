@@ -448,6 +448,57 @@ We have to ensure that the skew is withing 10% of clock period ie., should be le
 
 ![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/dbd809aa-dcda-43a1-97da-9f0ab81fbf08)
 
+</details>
+
+<details>
+<summary>DAY 5 : Final steps for RTL2GDSII</summary>
+<br>
+
+## Power Distribution Network
+
+After generating our clock tree network and verifying post routing STA checks we are ready to generate the power distribution network ```gen_pdn``` in OpenLANE:
+
+The PDN feature within OpenLANE will create:
+
+- Power ring global to the entire core
+- Power halo local to any preplaced cells
+- Power straps to bring power into the center of the chip
+- Power rails for the standard cells
+
+![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/b4fd0fda-f775-4b33-9aa8-c9a252ff19ab)
+
+## Global and Detailed Routing
+
+OpenLANE uses TritonRoute as the routing engine ```run_routing``` for physical implementations of designs. Routing consists of two stages:
+
+- Global Routing - Routing guides are generated for interconnects on our netlist defining what layers, and where on the chip each of the nets will be reputed
+- Detailed Routing - Metal traces are iteratively laid across the routing guides to physically implement the routing guides
+
+## SPEF Extraction
+
+After routing has been completed interconnect parasitics can be extracted to perform sign-off post-route STA analysis. The parasitics are extracted into a SPEF file. The SPEF extractor is not included within OpenLANE as of now.
+
+```
+cd ~/Desktop/work/tools/SPEFEXTRACTOR
+python3 main.py <path to merged.lef in tmp> <path to def in routing>
+```
+
+The SPEF File will be generated in the location where def file is present
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
