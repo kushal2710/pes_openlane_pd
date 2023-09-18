@@ -414,6 +414,8 @@ Since we have synthesised the core using our vsdinv cell too and as it got succe
 
 ![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/af0d11e9-1c70-4a1c-bbc7-b93d0d553214)
 
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/c5dfcc4c-d4ca-408a-8052-9f99b712fad5)
+
 ## Clock Tree Synthesis
 
 - After all the above steps of fixing slack violations, as we have ```run_synthesis``` in openlane, it would have generated a mapped.v file in synthesis results but we have fixed all the violations using ```pre_sta.conf```. Therefore we write this netlist using ```write_verilog``` and replace the openlane generated mapped file ie., ```picorv32a.synthesis.v```
