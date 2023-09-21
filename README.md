@@ -2,13 +2,13 @@
 
 ## IC Package 
 
-<img width="600" height="400" alt="image" src="https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/96055996-9ea4-4f61-b9fb-295efe5b1bbb">
+<img width="600" height="400" alt="image" src="(https://github.com/kushal2710/pes_openlane_pd/assets/115935208/4d6a5060-4f14-4464-be6f-3060e824cd8b)">
 
 The most critical component of the IC is the ```chip``` because it contains the actual functionality of the device and IO pads helps in exchange of signals with the chip.
 
 ## CHIP
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/2d811fbe-7f4d-4dae-8bd5-e1d26c7df813)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/e1b33e99-2c69-4937-822d-8ad5c65453c9)
 
 ## Application Specific Integrated Circuit (ASIC)
 
@@ -33,7 +33,7 @@ To develop an ASIC, We mainly require 3 components
 
 ## OpenLane
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/68749aa4-dd1a-401e-b7a3-0c74df581e8e)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/2a3427fa-54a9-4618-b2b8-ee37ccf419a3)
 
 # COURSE
 
@@ -141,7 +141,7 @@ We use De-Coupling capacitors (A huge capacitance with voltage equal to that of 
 
 Changes made in the config.tcl for floorplan purpose:
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/77f891bd-89f3-40f1-a64b-91ffdb993378)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/bde96792-d560-49b9-9895-fbb6f5d32827)
 
 ![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/7daa74fc-223b-42ca-8ab7-1f2c88dde73a)
 
@@ -202,7 +202,7 @@ SPICE deck contains the information of netlist such as:
 - 'Nodes' identified
 - 'Node' names
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/fde8c66e-6547-49a2-bdad-478c812d5419)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/fbf86ffe-f57c-409e-9c52-e383931f2545)
 
 ### [CMOS_INVERTER.cir]()
 
@@ -264,9 +264,9 @@ This step creates pockets for NMOS and PMOS
 ### 6. Source and Drain Formation
 ### 7. Steps to form contacts and interconnects
 ### 8. Higher level metal formation
-### 9. Final STructure
+### 9. Final Structure
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/0e355a75-55ff-4723-96ae-4abd5845697c)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/8bbe657d-6933-4be4-82c6-a19133e8bc8e)
 
 ## Inverter Layout using Magic
 
@@ -281,7 +281,7 @@ This step creates pockets for NMOS and PMOS
 
 To check for DRC Errors, select a region (left click for starting point, right click at end point) and see the DRC column at the top that shows how many DRC errors are present.The Details of DRC Errors will be printed on the console.
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/eebc0109-4408-40fa-a18e-ead67419cfa7)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/f584cbb4-642e-4b50-94dd-5e810f3e81eb)
 
 ## Extracting PEX to SPICE with MAGIC
 
@@ -298,7 +298,7 @@ The above file has details of inverter netlist but the sources and their values 
 
 ### Grid Size
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/1fd94afe-3a40-4269-92ed-d7c46f248417)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/fcd7d7e0-9353-4e79-8dd1-fd04c07fd29e)
 
 ## Modified Spice netlist
 
@@ -388,7 +388,7 @@ since there is slack, we have to reduce it
 
 - The synthesis result is :
   
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/b4a26ed1-6ac8-449c-bc6e-31ed04470c4e)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/69d53710-396a-4218-b58a-15b21ee2c6cc)
 
 ![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/0060e76c-3d63-4f20-aef6-485a9fc3627b)
 
@@ -406,7 +406,7 @@ The delay is high when the fanout is high. Therefore we can re-run synthesis by 
     
  - We can see which net is driving most outputs and replace the driver cell with larger form of its own kind
 
-    ![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/f4e05f1d-0c2c-404a-8b43-6b82a097d73d)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/befc1276-df0f-4c17-b8e3-ca69a2212624)
 
 Optimize the fanout value with OpenLANE tool
 
@@ -440,15 +440,15 @@ In OpenROAD the timing analysis is done by creating a .db database file. This da
 
 The results wont meet the timing because we are using min and max lib files and openroad doesnot support multi corner optimisation. Therefore we do it using only typical corner lib
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/e3687d97-556d-4b81-8261-0c78aba74d13)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/18ca9b93-6428-4005-83e4-21a2599a71e1)
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/843fce06-f1d1-4469-92d4-b9b1b4a82b91)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/bc5e3c7f-c0c2-47f3-8f4f-3c3116a1c8da)
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/928a49af-78b3-4e0e-a8b2-5c2bf7589f20)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/4d866b34-ce73-4d71-b8b6-56bba5a41bb5)
 
 We have to ensure that the skew is withing 10% of clock period ie., should be less than 1.6 in my case
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/dbd809aa-dcda-43a1-97da-9f0ab81fbf08)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/b0dfa85a-96b6-4e02-bfa3-254085f3a298)
 
 </details>
 
@@ -467,7 +467,7 @@ The PDN feature within OpenLANE will create:
 - Power straps to bring power into the center of the chip
 - Power rails for the standard cells
 
-![image](https://github.com/yagnavivek/PES_OpenLane_PD/assets/93475824/b4fd0fda-f775-4b33-9aa8-c9a252ff19ab)
+![image](https://github.com/kushal2710/pes_openlane_pd/assets/115935208/721aecc8-8729-49d7-9bac-e2f98e66ceda)
 
 ## Global and Detailed Routing
 
